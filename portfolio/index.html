@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhumika Porwal - Technical Delivery Professional & FinTech Specialist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" crossorigin="anonymous">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --dark-bg: #0f0f23;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            --glow: 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Custom Website Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient);
+            border-radius: 10px;
+            border: 2px solid var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Firefox Scrollbar */
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) var(--dark-bg);
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(240, 147, 251, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-10px) translateY(-10px); }
+            50% { transform: translateX(10px) translateY(-5px); }
+            75% { transform: translateX(-5px) translateY(10px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 35, 0.9);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 2rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Only hero section should be full height */
+        #home {
+            padding: 6rem 2rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+            min-height: 80vh;
+            padding-bottom: 2rem;
+        }
+
+        .hero-content {
+            flex: 1;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease 0.3s forwards;
+        }
+
+        .hero-image {
+            flex: 0 0 300px;
+            opacity: 0;
+            transform: translateX(50px);
+            animation: slideInRight 1s ease 0.5s forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: var(--glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .avatar {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            box-shadow: var(--glow);
+            animation: float 6s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .avatar-icon {
+            font-size: 4rem;
+            z-index: 1;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .btn-download:hover {
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+            transform: translateY(-3px);
+        }
+
+        /* Fallback icons using CSS */
+        .icon-email::before { content: '✉'; }
+        .icon-linkedin::before { content: '💼'; }
+        .icon-github::before { content: '⚡'; }
+        .icon-rocket::before { content: '🚀'; }
+        .icon-brain::before { content: '🧠'; }
+        .icon-chart::before { content: '📈'; }
+        .icon-phone::before { content: '📞'; }
+        .icon-location::before { content: '📍'; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Enhanced Social Icons */
+        .social-link {
+            width: 55px;
+            height: 55px;
+            background: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            font-size: 1.3rem;
+        }
+
+        .social-link:hover {
+            color: white;
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .social-link.email:hover {
+            background: linear-gradient(135deg, #ea4335, #fbbc05);
+        }
+
+        .social-link.linkedin:hover {
+            background: linear-gradient(135deg, #0077b5, #00a0dc);
+        }
+
+        .social-link.github:hover {
+            background: linear-gradient(135deg, #333333, #24292e);
+        }
+
+        /* Better icon styling */
+        .social-link .icon-email-new {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .social-link .icon-linkedin-new {
+            font-size: 1.1rem;
+            font-weight: 900;
+            font-family: 'Arial', sans-serif;
+            text-transform: lowercase;
+            letter-spacing: -1px;
+        }
+
+        .social-link .icon-github-new {
+            font-size: 1rem;
+            font-weight: 500;
+            font-family: 'Courier New', monospace;
+        }
+
+        .social-link:hover .icon-email-new,
+        .social-link:hover .icon-linkedin-new,
+        .social-link:hover .icon-github-new {
+            transform: scale(1.1);
+        }
+
+        /* CSS Icon alternatives */
+        .css-icon {
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .email-css::before {
+            content: '✉';
+            font-size: 1.4rem;
+        }
+
+        .linkedin-css::before {
+            content: 'ⓘⓝ';
+            font-size: 1rem;
+        }
+
+        .github-css::before {
+            content: '⚡';
+            font-size: 1.4rem;
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: cardSlideUp 0.8s ease forwards;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        @keyframes cardSlideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: rgba(102, 126, 234, 0.2);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gradient);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 1.5rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        .timeline-item:nth-child(odd) {
+            text-align: right;
+            padding-right: calc(50% + 2rem);
+        }
+
+        .timeline-item:nth-child(even) {
+            text-align: left;
+            padding-left: calc(50% + 2rem);
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .timeline-content.active {
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Project Details Modal */
+        .project-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .project-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        /* Custom Scrollbar for Modal */
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: var(--gradient);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Firefox Scrollbar */
+        .modal-content {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) rgba(255, 255, 255, 0.05);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            transform: rotate(90deg);
+        }
+
+        .project-header {
+            margin-bottom: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-stack {
+            margin: 2rem 0;
+        }
+
+        .tech-stack h4 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .project-details {
+            margin-top: 2rem;
+        }
+
+        .project-details h4 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .project-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .project-details li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .project-details li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 0.8rem;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .metric-card {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .metric-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 0.2rem;
+        }
+
+        .click-hint {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 1rem;
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 2rem;
+            left: 50%;
+            width: 15px;
+            height: 15px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .company {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .role {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .duration {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-family: inherit;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            color: var(--text-secondary);
+        }
+
+        .contact-item i {
+            color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 3rem 1rem 1rem;
+            }
+
+            #home {
+                padding: 5rem 1rem 1rem;
+            }
+
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 2rem;
+                min-height: 70vh;
+                padding-bottom: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                text-align: left;
+                padding-left: 2rem;
+                padding-right: 0;
+                margin: 1rem 0;
+            }
+
+            .timeline-item::before {
+                left: 0;
+                transform: translateX(-50%);
+            }
+
+            /* Mobile Modal Scrollbar */
+            .modal-content::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            .modal-content {
+                padding: 2rem;
+                max-height: 85vh;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(102, 126, 234, 0.3);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Bhumika Porwal</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Bhumika Porwal</h1>
+            <h2>Technical Delivery Professional | FinTech & Telecom Specialist</h2>
+            <p>11+ years of IT experience leading cross-functional teams in Telecom and Banking domains. Specializing in digital banking, payments, compliance-driven transformation programs, and AI/ML solutions with strong technical grounding to bridge business and engineering.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="./assets/Bhumika_Porwal_CV.pdf" download="Bhumika_Porwal_Resume.pdf" class="btn btn-download">
+                    <span>📄</span> Download Resume
+                </a>
+                <a href="#experience" class="btn btn-secondary">View Experience</a>
+            </div>
+            <div class="social-links">
+                <a href="mailto:bhumika.porwal92@gmail.com" class="social-link email" title="Email - bhumika.porwal92@gmail.com">
+                    <span class="icon-email-new">@</span>
+                </a>
+                <a href="https://www.linkedin.com/in/bhumika-porwal" target="_blank" class="social-link linkedin" title="LinkedIn Profile">
+                    <span class="icon-linkedin-new">in</span>
+                </a>
+                <a href="https://github.com/bhumikaporwal" target="_blank" class="social-link github" title="GitHub Profile">
+                    <span class="icon-github-new">&lt;/&gt;</span>
+                </a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="avatar">
+                <!-- Replace this src with actual profile image path -->
+                <img src="./assets/profile.jpg" alt="Bhumika Porwal" class="profile-image" 
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="avatar-icon" style="display: none;">👩‍💼</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modals -->
+    <div id="project-modal" class="project-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeProjectModal()">×</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="cards-grid">
+            <div class="card fade-in">
+                <h3><span class="icon-rocket">🚀</span> Professional Journey</h3>
+                <p>Technical Delivery Professional with expertise in FinTech, transitioning from development to business-driven product management. Passionate about streamlining and reforming products through problem-solving skills and technical knowledge.</p>
+            </div>
+            <div class="card fade-in">
+                <h3><span class="icon-brain">🧠</span> AI/ML Expertise</h3>
+                <p>Exposure to AI Governance, Responsible AI, MLOps, Fraud Detection, Credit Risk Scoring, Prompt Engineering, and Generative AI solutions in financial services.</p>
+            </div>
+            <div class="card fade-in">
+                <h3><span class="icon-chart">📈</span> Leadership</h3>
+                <p>Proven success in leading cross-functional teams, managing large-scale transformation programs, and delivering digital banking solutions that drive business growth and operational excellence.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Core Skills</h2>
+        <div class="cards-grid">
+            <div class="card fade-in">
+                <h3>Business & Product</h3>
+                <div class="skill-tags">
+                    <span class="tag">Requirements Gathering</span>
+                    <span class="tag">BRD/FRD</span>
+                    <span class="tag">User Stories</span>
+                    <span class="tag">Product Roadmaps</span>
+                    <span class="tag">Agile/Scrum/SAFe</span>
+                    <span class="tag">Stakeholder Management</span>
+                    <span class="tag">IaaS/PaaS/AIaaS</span>
+                </div>
+            </div>
+            <div class="card fade-in">
+                <h3>AI/ML Exposure</h3>
+                <div class="skill-tags">
+                    <span class="tag">Fraud Detection</span>
+                    <span class="tag">Credit Risk Scoring</span>
+                    <span class="tag">AI Governance</span>
+                    <span class="tag">MLOps</span>
+                    <span class="tag">Prompt Engineering</span>
+                    <span class="tag">OpenAI</span>
+                    <span class="tag">Gen AI</span>
+                </div>
+            </div>
+            <div class="card fade-in">
+                <h3>Technical Skills</h3>
+                <div class="skill-tags">
+                    <span class="tag">Java</span>
+                    <span class="tag">Node.js</span>
+                    <span class="tag">Microservices</span>
+                    <span class="tag">DevOps</span>
+                    <span class="tag">AWS</span>
+                    <span class="tag">Azure</span>
+                    <span class="tag">Kubernetes</span>
+                    <span class="tag">Terraform</span>
+                </div>
+            </div>
+            <div class="card fade-in">
+                <h3>Tools & Platforms</h3>
+                <div class="skill-tags">
+                    <span class="tag">Jira</span>
+                    <span class="tag">Azure DevOps</span>
+                    <span class="tag">Confluence</span>
+                    <span class="tag">GitHub/GitLab</span>
+                    <span class="tag">Power BI</span>
+                    <span class="tag">Tableau</span>
+                    <span class="tag">Grafana</span>
+                    <span class="tag">SonarQube</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-content" onclick="openProjectModal('emirates-nbd')">
+                    <div class="company">Synechron, Emirates NBD</div>
+                    <div class="role">Program Manager | AI in FinTech</div>
+                    <div class="duration">June 2023 - Present | Dubai</div>
+                    <p>Leading AI-powered fraud detection and incident tracking initiatives. Defined product vision for Generative AI features and managed AML fraud detection systems, reducing false positives by 15%. Delivered multi-currency FCY transactions boosting FX conversions by 28%.</p>
+                    <div class="click-hint">💡 Click to view detailed projects</div>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content" onclick="openProjectModal('bt-eserv')">
+                    <div class="company">BT e-serv Pvt Ltd</div>
+                    <div class="role">Technical Delivery Professional</div>
+                    <div class="duration">May 2018 - May 2023 | Bangalore</div>
+                    <p>Managed end-to-end delivery for OpenReach Developer & Supplier Portal. Improved Agile Maturity from Level 1 to Level 4, delivered 8 major and 14 minor releases in 2 years. Led DevOps strategy across 12 portals, saving £203,800 annually.</p>
+                    <div class="click-hint">💡 Click to view detailed projects</div>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content" onclick="openProjectModal('genpact')">
+                    <div class="company">Genpact Headstrong</div>
+                    <div class="role">Software Consultant</div>
+                    <div class="duration">Aug 2016 - May 2018 | Bangalore</div>
+                    <p>Designed and developed enterprise tools for GE Healthcare and contributed to Goldman Sachs' Fraud Detection & Risk Management platform. Implemented PCI-DSS compliant services and reduced project cost review cycle time by 20%.</p>
+                    <div class="click-hint">💡 Click to view detailed projects</div>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content" onclick="openProjectModal('ibm')">
+                    <div class="company">IBM India</div>
+                    <div class="role">System Engineer</div>
+                    <div class="duration">Jan 2014 - Jul 2016 | Bangalore</div>
+                    <p>Developed and enhanced AT&T's Service Provisioning Platform (SPP). Delivered full SDLC using Spring Boot and REST APIs, reducing release cycles by 25% and production defects by 40%.</p>
+                    <div class="click-hint">💡 Click to view detailed projects</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-form fade-in">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+        <div class="contact-info fade-in">
+            <div class="contact-item">
+                <span class="icon-email">✉️</span>
+                <span>bhumika.porwal92@gmail.com</span>
+            </div>
+            <div class="contact-item">
+                <span class="icon-phone">📞</span>
+                <span>+971-521027630 | +91-9036103552</span>
+            </div>
+            <div class="contact-item">
+                <span class="icon-location">📍</span>
+                <span>Dubai, UAE</span>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Loading screen
+        window.addEventListener('load', () => {
+            const loading = document.getElementById('loading');
+            setTimeout(() => {
+                loading.classList.add('hidden');
+            }, 1500);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add staggered animation delays
+        document.querySelectorAll('.card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.2}s`;
+        });
+
+        document.querySelectorAll('.timeline-item').forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.3}s`;
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Create mailto link
+            const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+            const mailtoLink = `mailto:bhumika.porwal92@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Open mail client
+            window.location.href = mailtoLink;
+            
+            // Reset form
+            this.reset();
+            
+            // Show success message
+            alert('Thank you for your message! Your email client should open now.');
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(15, 15, 35, 0.95)';
+            } else {
+                nav.style.background = 'rgba(15, 15, 35, 0.9)';
+            }
+        });
+
+        // Typing effect for hero title (optional enhancement)
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Project modal functionality
+        const projectData = {
+            'emirates-nbd': {
+                title: 'AI in FinTech - Emirates NBD',
+                subtitle: 'Fraud Detection & Incident Tracking Tool | Liv. LIVX',
+                duration: 'June 2023 - Present',
+                techStack: ['Confluence', 'Jira', 'Agentic AI', 'MLOps', 'MCP server', 'Predictive Modelling', 'Generative AI', 'Azure DevOps', 'LLM', 'Prompt Engineering'],
+                metrics: [
+                    { number: '15%', label: 'Reduced False Positives' },
+                    { number: '28%', label: 'FX Conversion Boost' },
+                    { number: '22%', label: 'Deposit Increase' },
+                    { number: '35%', label: 'Agile Velocity Improvement' }
+                ],
+                details: [
+                    'Leader transitioning from high-scale financial services to customer-facing operations, bringing expertise in secure, compliant business analysis and highly available systems management',
+                    'Defines product vision for Generative AI features (LLM-powered fraud insights, customer sentiment analysis) leveraging prompt engineering & Agentic AI frameworks',
+                    'Defined requirements for AML fraud detection and credit risk scoring initiatives',
+                    'Partnered with AI/ML engineers to validate fraud detection model outputs, reducing false positives by 15%',
+                    'Managed product backlog in Jira/Azure DevOps, aligning features to business and compliance priorities',
+                    'Delivered multi-currency FCY transactions, boosting FX conversions by 28% and deposits by 22%',
+                    'Coordinated UAT cycles to ensure compliance with regulatory standards',
+                    'Facilitated Agile ceremonies (sprint planning, reviews, retrospectives), improving velocity by 35%',
+                    'Led CI/CD and cloud migration programs, cutting costs by $250K annually',
+                    'Mentored junior engineers and improved team collaboration'
+                ]
+            },
+            'bt-eserv': {
+                title: 'OpenReach Portal - BT e-serv',
+                subtitle: 'Developer & Supplier Portal Management',
+                duration: 'May 2018 - May 2023',
+                techStack: ['Agile frameworks (Scrum, SAFe)', 'Jira', 'Tableau', 'OSS', 'BSS', 'VoIP', 'AWS', 'Terraform', 'DevOps', 'CI/CD'],
+                metrics: [
+                    { number: '8 Major', label: 'Releases Delivered' },
+                    { number: '14 Minor', label: 'Releases in 2 Years' },
+                    { number: '£203,800', label: 'Annual Savings' },
+                    { number: '99.9%', label: 'System Uptime' }
+                ],
+                details: [
+                    'Managed end-to-end delivery for OpenReach Developer & Supplier Portal with full responsibility for budgeting, planning, and vendor management',
+                    'Delivered services for order creation, order management, submitting orders, user interface for different plans, and discount management',
+                    'Achieved targets for both customer-facing systems and businesses (B2B and B2C)',
+                    'Improved Agile Maturity for 2 portals end-to-end, from Level 1 to Level 4 (95%+ agile)',
+                    'Transitioned from Waterfall to Agile methodology successfully',
+                    'Directed DevOps strategy across 12 portals, saving £203,800 annually through automation and efficiency',
+                    'Led migration to AWS cloud using Terraform, achieving 99.9% uptime',
+                    'Acted as Scrum Master for a team of 7, improving stakeholder engagement and mentoring team members',
+                    'Led end-to-end API development from business perspective including designing, requirement gathering, implementing, and testing microservices',
+                    'Conducted code reviews, sprint planning, application demos, and supported teams in Go-live with automation'
+                ]
+            },
+            'genpact': {
+                title: 'Enterprise Solutions - Genpact Headstrong',
+                subtitle: 'GE Healthcare PMR & CMR | Goldman Sachs FD & RM',
+                duration: 'Aug 2016 - May 2018',
+                techStack: ['Java/J2EE', 'Predix', 'Spring Boot', 'Spring JDBC', 'RESTful Web services', 'Maven', 'Mockito', 'CF CLI', 'Predix Cloud', 'AWS', 'PostgreSQL', 'JSON'],
+                metrics: [
+                    { number: '20%', label: 'Cost Review Cycle Reduction' },
+                    { number: '2 Tools', label: 'Enterprise Solutions Built' },
+                    { number: 'PCI-DSS', label: 'Compliance Achieved' },
+                    { number: 'Multi-Region', label: 'Deployment Scale' }
+                ],
+                details: [
+                    'Independently designed and developed two enterprise tools (PMR & CMR), enabling contract cost optimization and operational excellence',
+                    'Built microservices for business cost analysis, pricing validation, and engineering data collection',
+                    'Configured and deployed applications on local servers and migrated them to Predix/AWS Cloud',
+                    'Reduced project cost review cycle time by 20% by automating SAP data integration and cost analysis workflows',
+                    'Improved contract margin visibility and boosted profitability across multiple regions and business verticals',
+                    'Contributed to Goldman Sachs Fraud Detection & Risk Management platform',
+                    'Implemented PCI-DSS compliant services, safeguarding high-value financial transactions',
+                    'Developed and maintained monitoring services for Dow Jones defaulters list',
+                    'Enabled early detection of suspicious profiles and reduced fraud risk',
+                    'Executed KYC re-verification workflows to validate customer authenticity and strengthen regulatory compliance'
+                ]
+            },
+            'ibm': {
+                title: 'Service Provisioning Platform - IBM India',
+                subtitle: 'AT&T Voice and Enhanced Services',
+                duration: 'Jan 2014 - Jul 2016',
+                techStack: ['Java/J2EE', 'Junit', 'Spring Boot', 'Microservices', 'REST APIs', 'SDLC', 'Agile methodologies'],
+                metrics: [
+                    { number: '25%', label: 'Release Cycle Reduction' },
+                    { number: '40%', label: 'Production Defects Reduced' },
+                    { number: '100%', label: 'System Reliability' },
+                    { number: 'Cross-functional', label: 'Team Collaboration' }
+                ],
+                details: [
+                    'Developed and enhanced the Service Provisioning Platform (SPP), a suite of applications supporting provisioning of AT&T Voice and Enhanced services',
+                    'Delivered full SDLC (design → testing → deployment) using Spring Boot and REST APIs',
+                    'Reduced release cycles by 25% through efficient development practices',
+                    'Reduced production defects by 40% through proactive bug analysis, code reviews, and robust unit testing',
+                    'Collaborated with QA teams and cross-functional stakeholders to ensure seamless releases and high system reliability',
+                    'Actively participated in Agile ceremonies, estimations, walkthroughs, and reviews',
+                    'Contributed to predictable and on-time delivery of critical telecom services',
+                    'Implemented best practices in microservices architecture',
+                    'Maintained high code quality standards through comprehensive testing',
+                    'Enhanced system performance and scalability for enterprise-level telecom operations'
+                ]
+            }
+        };
+
+        function openProjectModal(projectKey) {
+            const modal = document.getElementById('project-modal');
+            const modalBody = document.getElementById('modal-body');
+            const project = projectData[projectKey];
+            
+            if (!project) return;
+            
+            modalBody.innerHTML = `
+                <div class="project-header">
+                    <h2 class="project-title">${project.title}</h2>
+                    <p class="project-subtitle">${project.subtitle}</p>
+                    <p class="duration">${project.duration}</p>
+                </div>
+                
+                <div class="metrics">
+                    ${project.metrics.map(metric => `
+                        <div class="metric-card">
+                            <div class="metric-number">${metric.number}</div>
+                            <div class="metric-label">${metric.label}</div>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div class="tech-stack">
+                    <h4>🛠️ Technology Stack</h4>
+                    <div class="tech-tags">
+                        ${project.techStack.map(tech => `
+                            <span class="tech-tag">${tech}</span>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div class="project-details">
+                    <h4>📋 Key Achievements & Responsibilities</h4>
+                    <ul>
+                        ${project.details.map(detail => `
+                            <li>${detail}</li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('project-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeProjectModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeProjectModal();
+            }
+        });
+    </script>
+</body>
+</html>
