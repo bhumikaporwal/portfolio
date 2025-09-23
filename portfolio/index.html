@@ -938,6 +938,29 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* Download message animations */
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -964,11 +987,11 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Bhumika Porwal</h1>
-            <h2>Technical Delivery Professional | FinTech & Telecom Specialist</h2>
+            <h2>Technical Delivery Professional & FinTech Specialist</h2>
             <p>11+ years of IT experience leading cross-functional teams in Telecom and Banking domains. Specializing in digital banking, payments, compliance-driven transformation programs, and AI/ML solutions with strong technical grounding to bridge business and engineering.</p>
             <div class="cta-buttons">
                 <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                <a href="./assets/Bhumika_Porwal_CV.pdf" download="Bhumika_Porwal_Resume.pdf" class="btn btn-download">
+                <a href="./assets/Bhumika_Porwal_CV.pdf" onclick="downloadResume(event)" class="btn btn-download">
                     <span>📄</span> Download Resume
                 </a>
                 <a href="#experience" class="btn btn-secondary">View Experience</a>
@@ -1207,6 +1230,83 @@
         document.querySelectorAll('.timeline-item').forEach((item, index) => {
             item.style.animationDelay = `${index * 0.3}s`;
         });
+
+        // Download resume function
+        function downloadResume(event) {
+            event.preventDefault();
+            
+            const fileName = 'Bhumika_Porwal_Resume.pdf';
+            const filePath = './assets/Bhumika_Porwal_CV.pdf';
+            
+            // Method 1: Try direct download with fetch (most reliable)
+            fetch(filePath)
+                .then(response => {
+                    if (response.ok) {
+                        return response.blob();
+                    }
+                    throw new Error('File not found');
+                })
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = fileName;
+                    
+                    // Trigger download
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    // Clean up
+                    window.URL.revokeObjectURL(url);
+                    
+                    // Show success message
+                    showDownloadMessage('success');
+                })
+                .catch(error => {
+                    console.error('Download failed:', error);
+                    // Fallback: Open in new tab
+                    window.open(filePath, '_blank');
+                    showDownloadMessage('fallback');
+                });
+        }
+
+        // Show download feedback
+        function showDownloadMessage(type) {
+            const messages = {
+                success: '✅ Resume download started!',
+                fallback: '📂 Resume opened in new tab. Use Ctrl+S (or Cmd+S) to save.'
+            };
+            
+            // Create temporary message
+            const messageDiv = document.createElement('div');
+            messageDiv.textContent = messages[type];
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: var(--gradient);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 10000;
+                font-weight: 500;
+                animation: slideInRight 0.3s ease;
+            `;
+            
+            document.body.appendChild(messageDiv);
+            
+            // Remove after 4 seconds
+            setTimeout(() => {
+                messageDiv.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => {
+                    if (messageDiv.parentNode) {
+                        document.body.removeChild(messageDiv);
+                    }
+                }, 300);
+            }, 4000);
+        }
 
         // Form submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {
